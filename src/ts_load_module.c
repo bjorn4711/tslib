@@ -43,6 +43,9 @@ static struct {
 #ifdef TSLIB_STATIC_DEJITTER_MODULE
 	{ "dejitter", dejitter_mod_init },
 #endif
+#ifdef TSLIB_STATIC_EGALAX_MODULE
+	{ "egalax", egalax_mod_init },
+#endif
 #ifdef TSLIB_STATIC_H3600_MODULE
 	{ "h3600", h3600_mod_init },
 #endif

@@ -11,13 +11,13 @@
 AM_CFLAGS		= -DTS_POINTERCAL=\"@TS_POINTERCAL@\" $(DEBUGFLAGS) $(LIBFLAGS) $(VIS_CFLAGS)
 LDADD		= -rpath $(PLUGIN_DIR)
 INCLUDES		= -I$(top_srcdir)/src
-  
+	
 #LTVSN			= -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) \
 #			   -release $(LT_RELEASE)
 LTVSN			= -avoid-version
 LIBS			=
 pluginexecdir		= $(PLUGIN_DIR)
-  
+
 if ENABLE_LINEAR_MODULE
 LINEAR_MODULE = linear.la
 else
@@ -102,6 +102,12 @@ else
 CY8MRLN_PALMPRE_MODULE =
 endif
 
+if ENABLE_EGALAX_MODULE
+EGALAX_MODULE = egalax.la
+else
+EGALAX_MODULE =
+endif
+
 pluginexec_LTLIBRARIES = \
 	$(LINEAR_MODULE) \
 	$(DEJITTER_MODULE) \
@@ -116,7 +122,8 @@ pluginexec_LTLIBRARIES = \
 	$(TATUNG_MODULE) \
 	$(H2200_LINEAR_MODULE) \
 	$(INPUT_MODULE) \
-	$(CY8MRLN_PALMPRE_MODULE)
+	$(CY8MRLN_PALMPRE_MODULE) \
+	$(EGALAX_MODULE)
   
 variance_la_SOURCES	= variance.c
 variance_la_LDFLAGS	= -module $(LTVSN)
@@ -159,6 +166,9 @@ tatung_la_LDFLAGS	= -module $(LTVSN)
 input_la_SOURCES	= input-raw.c
 input_la_LDFLAGS	= -module $(LTVSN)
 input_la_LIBADD		= $(top_builddir)/src/libts.la
+
+egalax_la_SOURCES	= egalax-raw.c
+egalax_la_LDFLAGS	= -module $(LTVSN)
 
 linear_h2200_la_SOURCES	= linear-h2200.c
 linear_h2200_la_LDFLAGS	= -module $(LTVSN)

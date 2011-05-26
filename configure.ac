@@ -66,6 +66,16 @@ TSLIB_CHECK_MODULE([mk712], [yes], [Enable building of mk712 raw module (Hi tach
 TSLIB_CHECK_MODULE([arctic2], [yes], [Enable building of arctic2 raw module (IBM Arctic II support)])
 TSLIB_CHECK_MODULE([tatung], [yes], [Enable building of tatung raw module (Tatung Webpad support)])
 TSLIB_CHECK_MODULE([input], [yes], [Enable building of generic input raw module (Linux /dev/input/eventN support)])
+TSLIB_CHECK_MODULE([egalax], [yes], [Enable building of eGalax support)])
+
+AC_MSG_CHECKING([whether egalax module is requested])
+AC_ARG_ENABLE(egalax,
+        AS_HELP_STRING([--enable-egalax],
+                [Enable building of HID USB eGalax raw module (Linux /dev/hiddevN support) (default=yes)]),
+        [egalax_module=$enableval],
+        [egalax_module=yes])
+AC_MSG_RESULT($egalax_module)
+AM_CONDITIONAL(ENABLE_EGALAX_MODULE, test "$egalax_module" = "yes")
 
 AC_MSG_CHECKING([where to place modules])
 AC_ARG_WITH(plugindir,
